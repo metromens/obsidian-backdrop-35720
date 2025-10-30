@@ -7,6 +7,7 @@ import CartDrawer from "./CartDrawer";
 import WishlistDrawer from "./WishlistDrawer";
 import AuthDialog from "./AuthDialog";
 import { useFilter } from "@/contexts/FilterContext";
+import metroLogo from "@/assets/metro-logo.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -90,11 +91,18 @@ const Navbar = () => {
         {/* Top bar */}
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <button onClick={() => navigate("/")} className="flex items-center space-x-2.5 group">
-            <div className="text-2xl font-bold bg-gradient-premium bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-200">
-              Metro Men's
+          <button onClick={() => navigate("/")} className="flex items-center space-x-3 group">
+            <img 
+              src={metroLogo} 
+              alt="Metro Men's Logo" 
+              className="h-10 w-10 object-contain group-hover:scale-105 transition-transform duration-200"
+            />
+            <div className="flex items-center space-x-2.5">
+              <div className="text-2xl font-bold bg-gradient-premium bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-200">
+                Metro Men's
+              </div>
+              <span className="text-xs text-muted-foreground hidden sm:inline font-medium">Tenkasi</span>
             </div>
-            <span className="text-xs text-muted-foreground hidden sm:inline font-medium">Tenkasi</span>
           </button>
 
           {/* Search bar - Desktop */}
