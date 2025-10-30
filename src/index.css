@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 43 96% 56%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 94%;
+    --ring: 43 96% 56%;
+
+    --radius: 1rem;
+
+    /* Premium gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(45 95% 98%) 30%, hsl(43 85% 96%) 70%, hsl(0 0% 98%) 100%);
+    --gradient-premium: linear-gradient(135deg, hsl(43 96% 56%) 0%, hsl(38 96% 50%) 50%, hsl(33 90% 48%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(0 0% 99.5%) 50%, hsl(45 90% 99%) 100%);
+    --gradient-shine: linear-gradient(90deg, transparent, hsla(43, 96%, 56%, 0.15), transparent);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(43 90% 95%) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(38 85% 96%) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(45 80% 97%) 0px, transparent 50%);
+    
+    /* Shadows */
+    --shadow-premium: 0 25px 70px -15px hsl(43 96% 56% / 0.35);
+    --shadow-card: 0 4px 16px hsl(0 0% 0% / 0.04);
+    --shadow-hover: 0 12px 40px hsl(43 96% 56% / 0.15), 0 0 0 1px hsl(43 96% 56% / 0.1);
+    --shadow-glow: 0 0 50px hsl(43 96% 56% / 0.25);
+    --shadow-smooth: 0 2px 8px hsl(0 0% 0% / 0.03);
+
+    /* Golden accent variations */
+    --gold: 45 100% 60%;
+    --gold-light: 45 95% 70%;
+    --gold-dark: 35 100% 50%;
+
+    /* Yellow & Black Admin Sidebar */
+    --sidebar-background: 45 100% 55%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary-foreground: 45 100% 55%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 45 100% 55%;
+    --sidebar-border: 45 100% 45%;
+    --sidebar-ring: 0 0% 10%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 45 100% 60%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 18%;
+    --ring: 45 100% 60%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 10%) 0%, hsl(45 95% 8%) 50%, hsl(0 0% 6%) 100%);
+    --gradient-premium: linear-gradient(135deg, hsl(45 100% 60%) 0%, hsl(35 100% 55%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 14%) 0%, hsl(0 0% 10%) 100%);
+    --gradient-shine: linear-gradient(90deg, transparent, hsla(45, 100%, 60%, 0.1), transparent);
+    
+    --shadow-premium: 0 20px 60px -15px hsl(45 100% 60% / 0.4);
+    --shadow-card: 0 2px 12px hsl(0 0% 0% / 0.4);
+    --shadow-hover: 0 8px 30px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(45 100% 60% / 0.3);
+
+    /* Yellow & Black Admin Sidebar (Dark Mode) */
+    --sidebar-background: 45 100% 55%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary-foreground: 45 100% 55%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 45 100% 55%;
+    --sidebar-border: 45 100% 45%;
+    --sidebar-ring: 0 0% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
