@@ -1,5 +1,5 @@
-import { NavLink, useLocation } from "react-router-dom";
-import { LayoutDashboard, Users, ShoppingBag, Settings, Package, BarChart3 } from "lucide-react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { LayoutDashboard, Users, ShoppingBag, Settings, Package, BarChart3, LogOut } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -27,9 +27,14 @@ export function AdminSidebar() {
   const collapsed = state === "collapsed";
   const location = useLocation();
   const currentPath = location.pathname;
+  const navigate = useNavigate();
 
   const baseItemCls = "rounded-full bg-sidebar-accent text-sidebar-accent-foreground px-4 py-2 h-10 flex items-center transition-colors";
-  const activeItemCls = " ring-2 ring-sidebar-border font-semibold";
+  const activeItemCls = " !bg-white !text-black font-semibold";
+
+  const handleLogout = () => {
+    navigate("/admin");
+  };
 
   return (
     <Sidebar 
@@ -83,6 +88,17 @@ export function AdminSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {/* Logout Button */}
+        <div className={`mt-auto border-t-2 border-sidebar-accent/30 ${collapsed ? "px-1 py-4" : "px-3 py-4"}`}>
+          <button
+            onClick={handleLogout}
+            className={`${collapsed ? "rounded-full bg-sidebar-accent text-sidebar-accent-foreground w-10 h-10 flex items-center justify-center p-0 hover:bg-destructive hover:text-destructive-foreground transition-colors" : baseItemCls + " w-full justify-start hover:bg-destructive hover:text-destructive-foreground"}`}
+          >
+            <LogOut className="h-5 w-5" strokeWidth={2.5} />
+            {!collapsed && <span className="text-sm font-semibold ml-3">Logout</span>}
+          </button>
+        </div>
       </SidebarContent>
     </Sidebar>
   );
