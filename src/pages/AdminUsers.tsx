@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 
 interface User {
   id: string;
-  username: string;
+  name: string;
   created_at: string;
 }
 
@@ -113,7 +113,7 @@ const AdminUsers = () => {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>Username</TableHead>
+                        <TableHead>Name</TableHead>
                         <TableHead>User ID</TableHead>
                         <TableHead>Joined</TableHead>
                       </TableRow>
@@ -121,7 +121,7 @@ const AdminUsers = () => {
                     <TableBody>
                       {users.map((user) => (
                         <TableRow key={user.id}>
-                          <TableCell className="font-medium">{user.username}</TableCell>
+                          <TableCell className="font-medium">{user.name}</TableCell>
                           <TableCell className="font-mono text-xs">{user.id}</TableCell>
                           <TableCell>{new Date(user.created_at).toLocaleDateString()}</TableCell>
                         </TableRow>

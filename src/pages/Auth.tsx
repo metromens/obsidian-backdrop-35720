@@ -22,17 +22,16 @@ const Auth = () => {
     }
   }, [user, navigate]);
 
-  const [signInData, setSignInData] = useState({ username: "", password: "" });
-  const [signUpData, setSignUpData] = useState({ username: "", password: "" });
+  const [signInData, setSignInData] = useState({ email: "", password: "" });
+  const [signUpData, setSignUpData] = useState({ name: "", email: "", password: "" });
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const email = `${signInData.username}@metro.local`;
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
+        email: signInData.email,
         password: signInData.password,
       });
 
@@ -60,13 +59,12 @@ const Auth = () => {
     setIsLoading(true);
 
     try {
-      const email = `${signUpData.username}@metro.local`;
       const { data, error } = await supabase.auth.signUp({
-        email,
+        email: signUpData.email,
         password: signUpData.password,
         options: {
           data: {
-            username: signUpData.username,
+            name: signUpData.name,
           },
           emailRedirectTo: `${window.location.origin}/`,
         },
@@ -79,9 +77,9 @@ const Auth = () => {
         description: "You can now sign in with your credentials.",
       });
 
-      // Switch to sign in tab
-      setSignInData({ username: signUpData.username, password: signUpData.password });
-      setSignUpData({ username: "", password: "" });
+      // Switch to sign in tab and pre-fill email
+      setSignInData({ email: signUpData.email, password: signUpData.password });
+      setSignUpData({ name: "", email: "", password: "" });
     } catch (error: any) {
       toast({
         title: "Error",
@@ -110,13 +108,13 @@ const Auth = () => {
             <TabsContent value="signin">
               <form onSubmit={handleSignIn} className="space-y-4 mt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="signin-username">Username</Label>
+                  <Label htmlFor="signin-email">Email</Label>
                   <Input
-                    id="signin-username"
-                    type="text"
-                    placeholder="Enter your username"
-                    value={signInData.username}
-                    onChange={(e) => setSignInData({ ...signInData, username: e.target.value })}
+                    id="signin-email"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={signInData.email}
+                    onChange={(e) => setSignInData({ ...signInData, email: e.target.value })}
                     required
                   />
                 </div>
@@ -140,13 +138,24 @@ const Auth = () => {
             <TabsContent value="signup">
               <form onSubmit={handleSignUp} className="space-y-4 mt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="signup-username">Username</Label>
+                  <Label htmlFor="signup-name">Name</Label>
                   <Input
-                    id="signup-username"
+                    id="signup-name"
                     type="text"
-                    placeholder="Choose a username"
-                    value={signUpData.username}
-                    onChange={(e) => setSignUpData({ ...signUpData, username: e.target.value })}
+                    placeholder="Enter your name"
+                    value={signUpData.name}
+                    onChange={(e) => setSignUpData({ ...signUpData, name: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signup-email">Email</Label>
+                  <Input
+                    id="signup-email"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={signUpData.email}
+                    onChange={(e) => setSignUpData({ ...signUpData, email: e.target.value })}
                     required
                   />
                 </div>
