@@ -1,4 +1,4 @@
-import { Search, Menu, ChevronDown } from "lucide-react";
+import { Search, Menu, ChevronDown, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import CartDrawer from "./CartDrawer";
 import WishlistDrawer from "./WishlistDrawer";
 import AuthDialog from "./AuthDialog";
 import { useFilter } from "@/contexts/FilterContext";
+import { useAuth } from "@/contexts/AuthContext";
 import metroLogo from "@/assets/metro-logo.png";
 import {
   DropdownMenu,
@@ -19,6 +20,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const { selectedCategory, setSelectedCategory, searchQuery, setSearchQuery } = useFilter();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -121,7 +123,18 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className="flex items-center space-x-2 sm:space-x-4">
-            <AuthDialog />
+            {user ? (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => signOut()}
+                title="Sign Out"
+              >
+                <LogOut className="h-5 w-5" />
+              </Button>
+            ) : (
+              <AuthDialog />
+            )}
             <WishlistDrawer />
             <CartDrawer />
             <Button
